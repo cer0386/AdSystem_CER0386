@@ -4,9 +4,10 @@ using System.Text;
 
 namespace DomainLayer
 {
-    class WebPage
+    class Targeting
     {
-        string url { get; set; }
+        int targetingId { get; set; }
+        string interest { get; set; }
         string category { get; set; }
         string product { get; set; }
     }
