@@ -2,7 +2,7 @@
     (
      AdGroupID INTEGER NOT NULL , 
      adGroupName VARCHAR (50) NOT NULL , 
-     adGroupStatus BIT NOT NULL , 
+     adGroupStatus smallint NOT NULL , 
      adGroupBudget DECIMAL (2) , 
      maxCPM DECIMAL (2) , 
      requiredViews INTEGER NOT NULL , 

@@ -4,10 +4,17 @@ using System.Text;
 
 namespace DomainLayer
 {
-    class Visitor
+    public class Visitor
     {
         int visitorId { get; set; }
         string name { get; set; }
         string location { get; set; }
+
+        public Visitor(int vI, string n = null, string l = null)
+        {
+            visitorId = vI;
+            name = n;
+            location = l;
+        }
     }
 }

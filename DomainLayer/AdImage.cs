@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DomainLayer
 {
-    class AdImage
+    public class AdImage
     {
         int imageId { get; set; }
         //TODO obrazek sem

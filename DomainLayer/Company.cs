@@ -4,10 +4,17 @@ using System.Text;
 
 namespace DomainLayer
 {
-    class Company
+    public class Company
     {
-        int ico { get; set; }
+        int crn { get; set; }
         string companyName { get; set; }
         bool vip { get; set; }
+
+        public Company(int c, string cN, bool v)
+        {
+            crn = c;
+            companyName = cN;
+            vip = v;
+        }
     }
 }

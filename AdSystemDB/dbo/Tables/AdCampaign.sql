@@ -2,7 +2,7 @@
     (
      campaignID INTEGER NOT NULL , 
      type VARCHAR (50) NOT NULL , 
-     status BIT NOT NULL , 
+     status smallint NOT NULL , 
      budget DECIMAL (2) NOT NULL , 
      cpm DECIMAL (2) NOT NULL , 
      start DATETIME NOT NULL , 
