@@ -1,0 +1,78 @@
+﻿
+@page
+@model NewAdCampaignModel
+@{
+    ViewData["Title"] = "Nová kampaň";
+}
+
+<h2>Nová kampaň</h2>
+
+<form method="post">
+    <div class="form-group">
+        <div class="container">
+            <label>Název kampaně</label>
+            <input type="text" class="form-control" id="campaignName" />
+
+            <label>Rozpočet</label>
+            <input type="number" class="form-control" id="budget" />
+
+            <label>Omezení frekvence</label>
+            <input type="number" class="form-control" id="viewLimit" />
+
+            <label>Datum zahájení</label>
+            <input type="date" class="form-control" id="start" />
+            <!--Když se to zaklikne tak se objeví datum ukončení-->
+            <label><input type="checkbox" id="ifEnd" name="ifEnd" /> Bez data ukončení</label><br />
+            <!--
+            <label>Datum ukončení</label>
+            <input type="date" class="form-control" id="end" /> -->
+        </div>
+        <div class="container">
+            <h4>Nastavení reklamní sestavy</h4>
+            <p>Vytvořením reklamních sestav podle zvolených témat se dosáhne přesnějšího cílení</p>
+            <label>Název reklamní sestavy</label>
+            <input type="text" class="form-control" id="adGroupName" />
+
+            <label>Publika</label>
+            
+            <table class="table-condensed">
+                <tr>
+                    <th>Zájmy</th>
+                    <th>Témata stránek</th>
+                    <th>Vlastní seznamy</th>
+                </tr>
+                <tr>
+                    <th>
+                        <dl id="interests">
+                            <dd><input type="checkbox" id="1" /> Cestování</dd>
+                            <dd><input type="checkbox" id="2" /> Domov a zahrada</dd>
+                            <dd><input type="checkbox" id="3" /> Jídlo</dd>
+                            <dd><input type="checkbox" id="4" /> Nakupování</dd>
+                            <dd><input type="checkbox" id="5" /> Sport</dd>
+                            <dd><input type="checkbox" id="6" /> Zábava</dd>
+                        </dl>
+                    </th>
+                    <th>
+                        <dl id="topics">
+                            <dd><input type="checkbox" id="1" /> Cestování</dd>
+                            <dd><input type="checkbox" id="2" /> Domov a zahrada</dd>
+                            <dd><input type="checkbox" id="3" /> Jídlo</dd>
+                            <dd><input type="checkbox" id="4" /> Nakupování</dd>
+                            <dd><input type="checkbox" id="5" /> Sport</dd>
+                            <dd><input type="checkbox" id="6" /> Zábava</dd>
+                        </dl>
+                    </th>
+
+                    <!--Vlastní seznamy publika-->
+
+                </tr>
+            </table>
+
+            <label>Maximální nabídka pro sestavu</label>
+            <input type="number" class="form-control" id="maxCPM" />
+        </div>
+
+        <button class="btn btn-primary" type="submit" id="createCampaign">Vytvořit kampaň</button>
+
+    </div>
+</form>

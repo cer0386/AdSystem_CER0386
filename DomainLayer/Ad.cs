@@ -6,7 +6,7 @@ namespace DomainLayer
 {
     class Ad
     {
-        int adId { get; set; }
+        int adId { get; }
         string targetUrl { get; set; }
         string title { get; set; }
         string longTitle { get; set; }
