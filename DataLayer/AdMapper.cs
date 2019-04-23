@@ -1,9 +1,4 @@
 ﻿using DomainLayer;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 
 namespace DataLayer
@@ -32,7 +27,7 @@ namespace DataLayer
             return ad;
         }
 
-        private static Ad MapCtoObject(MysqlDataReader reader)
+        private static Ad MapCtoObject(MySqlDataReader reader)
         {
             Ad ad = new Ad();
             int i = -1;
@@ -43,11 +38,15 @@ namespace DataLayer
             ad.longTitle = reader.GetString(++i);
             ad.description = reader.GetString(++i);
             ad.companyName = reader.GetString(++i);
-            ad.nOfViews = reader.GetInt32(++i);
+            if(!reader.IsDBNull(++i))
+                ad.nOfViews = reader.GetInt32(i);
             ad.adGroup = new AdGroup();
             ad.adGroup.adGroupId = reader.GetInt32(++i);
-            ad.adImage = new AdImage();
-            ad.adImage.imageId = reader.GetInt32(++i);
+            if (!reader.IsDBNull(++i))
+            {
+                ad.adImage = new AdImage();
+                ad.adImage.imageId = reader.GetInt32(i);
+            }
             ad.webPage = new WebPage();
             ad.webPage.webPageID = reader.GetInt32(++i);
             return ad;

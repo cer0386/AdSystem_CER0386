@@ -1,13 +1,7 @@
 ﻿using DomainLayer;
-using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 
-namespace DataLayer.Properties
+namespace DataLayer
 {
     public class CompanyMapper
     {
@@ -33,7 +27,7 @@ namespace DataLayer.Properties
             return company;
         }
 
-        private static Company MapCtoObject(MysqlDataReader reader)
+        private static Company MapCtoObject(MySqlDataReader reader)
         {
             Company company = new Company();
             int i = -1;

@@ -8,7 +8,7 @@ using MySql.Data.MySqlClient;
 
 namespace DataLayer
 {
-    public class adGroupMapper
+    public class AdGroupMapper
     {
         public AdGroup FindAdGroup(int adID)
         {
@@ -19,7 +19,7 @@ namespace DataLayer
                 connection.Open();
                 using (MySqlCommand cmd = new MySqlCommand(sql, connection))
                 {
-                    cmd.Parameters.AdGroupdWithValue("@adID", adID);
+                    cmd.Parameters.AddWithValue("@adID", adID);
                     using (MySqlDataReader reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
@@ -32,15 +32,17 @@ namespace DataLayer
             return adGroup;
         }
 
-        private static AdGroup MapAdGtoObject(MysqlDataReader reader)
+        private static AdGroup MapAdGtoObject(MySqlDataReader reader)
         {
             AdGroup adGroup = new AdGroup();
             int i = -1;
             adGroup.adGroupId = reader.GetInt32(++i);
             adGroup.adGroupName = reader.GetString(++i);
             adGroup.adGroupStatus = reader.GetBoolean(++i);
-            adGroup.adGroupBudget = reader.GetInt32(++i);
-            adGroup.maxCostPer = reader.GetInt32(++i);
+            if(!reader.IsDBNull(++i))
+                adGroup.adGroupBudget = reader.GetInt32(i);
+            if (!reader.IsDBNull(++i))
+                adGroup.maxCostPer = reader.GetInt32(i);
             adGroup.requiredViews = reader.GetInt32(++i);
             adGroup.company = new Company();
             adGroup.company.crn = reader.GetInt32(++i);

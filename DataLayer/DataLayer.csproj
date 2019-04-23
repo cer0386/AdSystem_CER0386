@@ -43,11 +43,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="adGroupMapper.cs" />
+    <Compile Include="AdCampaignMapper.cs" />
+    <Compile Include="AdClickMapper.cs" />
+    <Compile Include="AdGroupMapper.cs" />
     <Compile Include="AdMapper.cs" />
+    <Compile Include="AdViewMapper.cs" />
+    <Compile Include="AssignedExcludedMapper.cs" />
+    <Compile Include="AudienceMapper.cs" />
+    <Compile Include="CategoryMapper.cs" />
     <Compile Include="DBConnector.cs" />
+    <Compile Include="AdImageMapper.cs" />
+    <Compile Include="InAudienceMapper.cs" />
+    <Compile Include="InterestMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CompanyMapper.cs" />
+    <Compile Include="VisitMapper.cs" />
+    <Compile Include="VisitorMapper.cs" />
+    <Compile Include="WebPageMapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DomainLayer\DomainLayer.csproj">

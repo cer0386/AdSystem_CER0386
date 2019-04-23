@@ -5,15 +5,15 @@ namespace DomainLayer
 {
     public class AdCampaign
     {
-        int campaignId { get; set; }
-        string type { get; set; }
-        bool status { get; set; }
-        double budget { get; set; }
-        double costPer { get; set; }
-        DateTime start { get; set; }
-        DateTime ? ending { get; set; } //? = nullable
-        Company company { get; set; }
-        List<AdGroup> adGroups { get; set; }
+        public int campaignId { get; set; }
+        public string type { get; set; }
+        public bool status { get; set; }
+        public double budget { get; set; }
+        public double costPer { get; set; }
+        public DateTime start { get; set; }
+        public DateTime ? ending { get; set; } //? = nullable
+        public Company company { get; set; }
+        public List<AdGroup> adGroups { get; set; }
 
 
 
