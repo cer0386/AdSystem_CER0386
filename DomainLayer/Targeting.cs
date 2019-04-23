@@ -6,10 +6,10 @@ namespace DomainLayer
 {
     public class Targeting
     {
-        int targetingId { get; set; }
-        string interest { get; set; }
-        string category { get; set; }
-        string product { get; set; }
+        public int targetingId { get; set; }
+        public string interest { get; set; }
+        public string category { get; set; }
+        public string product { get; set; }
 
         public Targeting(int tI, string i = null, string c = null, string p = null)
         {
