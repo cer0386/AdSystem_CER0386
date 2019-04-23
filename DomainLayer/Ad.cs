@@ -18,19 +18,6 @@ namespace DomainLayer
         AdImage adImage { get; set; }
 
 
-        public Ad(int adI, string tU, string t, string lT, string d, string cN, int nov, AdGroup aG, WebPage wP, AdImage adIm = null)
-        {
-            adId = adI;
-            targetUrl = tU;
-            title = t;
-            longTitle = lT;
-            description = d;
-            companyName = cN;
-            nOfViews = nov;
-            adGroup = aG;
-            webPage = wP;
-            adImage = adIm;
-        }
 
         private void showAd()
         {
