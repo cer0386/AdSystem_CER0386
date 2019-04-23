@@ -43,9 +43,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="adGroupMapper.cs" />
+    <Compile Include="AdMapper.cs" />
     <Compile Include="DBConnector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="DataMapper.cs" />
+    <Compile Include="CompanyMapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DomainLayer\DomainLayer.csproj">

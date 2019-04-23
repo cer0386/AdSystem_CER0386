@@ -12,8 +12,8 @@ namespace ConsoleTest
     {
         static void Main(string[] args)
         {
-            DataMapper mapper = new DataMapper();
-            List<Company> companies = mapper.FindCompanies();
+            CompanyMapper mapper = new CompanyMapper();
+            List<Company> companies = mapper.FindAllCompanies();
 
             foreach(Company c in companies)
             {

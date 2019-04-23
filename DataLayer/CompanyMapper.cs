@@ -9,32 +9,38 @@ using MySql.Data.MySqlClient;
 
 namespace DataLayer.Properties
 {
-    public class DataMapper
+    public class CompanyMapper
     {
-        public List<Company> FindCompanies()
+        public Company FindCompany(string cName)
         {
-            string sql = ("Select * from Company");
-            List<Company> companies = new List<Company>();
+            string sql = ("Select * from Company where companyName = @cName");
+            Company company = new Company();
             using (MySqlConnection connection =  DBConnector.GetConnection())
             {
                 connection.Open();
                 using (MySqlCommand cmd = new MySqlCommand(sql,connection))
                 {
+                    cmd.Parameters.AddWithValue("@cName", cName);
                     using (MySqlDataReader reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            Company company = new Company();
-                            int i = -1;
-                            company.crn = reader.GetInt32(++i);
-                            company.companyName = reader.GetString(++i);
-                            company.vip = reader.GetBoolean(++i);
-                            companies.Add(company);
+                            company = MapCtoObject(reader);
                         }
                     }
                 }
             }
-            return companies;
+            return company;
+        }
+
+        private static Company MapCtoObject(MysqlDataReader reader)
+        {
+            Company company = new Company();
+            int i = -1;
+            company.crn = reader.GetInt32(++i);
+            company.companyName = reader.GetString(++i);
+            company.vip = reader.GetBoolean(++i);
+            return company;
         }
     }
 }
