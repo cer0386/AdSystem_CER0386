@@ -7,6 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DomainLayer", "DomainLayer\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAppMetronic", "WebAppMetronic\WebAppMetronic.csproj", "{F3BAE975-4964-492B-8351-A5254801EEEA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLayer", "DataLayer\DataLayer.csproj", "{0D417861-CD2E-46A7-8956-D92549BEC97E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleTest", "ConsoleTest\ConsoleTest.csproj", "{3C65E163-74DE-4160-B1C8-72567AC6453E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{F3BAE975-4964-492B-8351-A5254801EEEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F3BAE975-4964-492B-8351-A5254801EEEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F3BAE975-4964-492B-8351-A5254801EEEA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D417861-CD2E-46A7-8956-D92549BEC97E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D417861-CD2E-46A7-8956-D92549BEC97E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D417861-CD2E-46A7-8956-D92549BEC97E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D417861-CD2E-46A7-8956-D92549BEC97E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C65E163-74DE-4160-B1C8-72567AC6453E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C65E163-74DE-4160-B1C8-72567AC6453E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C65E163-74DE-4160-B1C8-72567AC6453E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C65E163-74DE-4160-B1C8-72567AC6453E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
