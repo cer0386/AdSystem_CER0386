@@ -6,15 +6,10 @@ namespace DomainLayer
 {
     public class WebPage
     {
-        string url { get; set; }
-        string category { get; set; }
-        string product { get; set; }
+        public int webPageID { get; set; }
+        public string url { get; set; }
+        public string category { get; set; }
+        public string product { get; set; }
 
-        public WebPage(string u, string c, string p = null)
-        {
-            url = u;
-            category = c;
-            product = p;
-        }
     }
 }

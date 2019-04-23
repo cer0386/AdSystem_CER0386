@@ -4,10 +4,11 @@ using System.Text;
 
 namespace DomainLayer
 {
-    public class AdImage
+    public class Interest
     {
-        public int imageId { get; set; }
-        public string imagePath { get; set; }
+        public int interestID { get; set; }
+        public string interestName { get; set; }
         public string description { get; set; }
+
     }
 }
