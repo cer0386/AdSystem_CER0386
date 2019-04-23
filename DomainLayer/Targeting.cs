@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DomainLayer
 {
-    class Targeting
+    public class Targeting
     {
         int targetingId { get; set; }
         string interest { get; set; }
