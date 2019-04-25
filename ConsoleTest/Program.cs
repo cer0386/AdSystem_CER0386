@@ -1,4 +1,5 @@
-﻿using DataLayer.Properties;
+﻿using DataLayer;
+
 using DomainLayer;
 using System;
 using System.Collections.Generic;
@@ -12,14 +13,7 @@ namespace ConsoleTest
     {
         static void Main(string[] args)
         {
-            CompanyMapper mapper = new CompanyMapper();
-            List<Company> companies = mapper.FindAllCompanies();
 
-            foreach(Company c in companies)
-            {
-                Console.WriteLine(c.crn +" "+ c.companyName + " " + c.vip);
-            }
-            Console.ReadLine();
         }
     }
 }

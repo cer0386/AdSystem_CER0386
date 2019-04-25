@@ -1,7 +1,171 @@
-﻿
+﻿@model IEnumerable<DomainLayer.AdCampaign>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Hlavní stránka";
+    ViewBag.Description = "Všechny kampaně";
+    int year = DateTime.Now.Year;
+    int month = DateTime.Now.Month;
+    int maxY = 2019;
+    int maxM = 4;
+    int cDays = DateTime.DaysInMonth(maxY, maxM);
+    int clicks = ViewBag.nOfClicks;
+    string from = new DateTime(year, month, 1).ToString("dd-MMMM-yyyy");
+    string to = new DateTime(year, month, cDays).ToString("dd-MMMM-yyyy");
+
 }
 
-<h2>Index</h2>
+<html>
+<head>
+</head>
+
+<body>
+
+
+
+
+
+    <script src="~/metronic/code/highcharts.js"></script>
+    <script src="~/metronic/code/modules/series-label.js"></script>
+    <script src="~/metronic/code/modules/exporting.js"></script>
+    <script src="~/metronic/code/modules/export-data.js"></script>
+    <link href="~/metronic/vendors/general/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet" type="text/css" />
+
+    
+    <div id="container"></div>
+
+
+    <script type="text/javascript">
+        Highcharts.chart('container', {
+
+            title: {
+                text: '@from - @to'
+            },
+
+            legend: {
+                layout: 'vertical',
+                align: 'left',
+                verticalAlign: 'middle'
+            },
+            yAxis: {
+                title: {
+                    text: ''
+                }
+            },
+            xAxis: {
+                type: 'datetime',
+                max: Date.UTC(@maxY, @maxM, @cDays),
+                min: Date.UTC(@maxY, @maxM, 1)
+            },
+
+            plotOptions: {
+                series: {
+
+                    pointStart: Date.UTC(@year, @month, 1),
+                    pointInterval: 24 * 3600 * 1000 // one day
+
+                }
+            },
+
+            series: [{
+                name: 'Prokliky',
+                data: [300, 20, 600, 30, 200, 879, 333, 666]
+            }, {
+                name: 'Zobrazení',
+                data: [2000, 300, 2654, 364, 952, 2634, 526, 987]
+            }, {
+                name: 'Cena',
+                data: [1000, 500, 1234, 365, 665, 2300, 985, 1456]
+            }],
+
+            responsive: {
+                rules: [{
+                    condition: {
+                        maxWidth: 500
+                    },
+                    chartOptions: {
+                        legend: {
+                            layout: 'horizontal',
+                            align: 'center',
+                            verticalAlign: 'bottom'
+                        }
+                    }
+                }]
+            }
+
+        });
+    </script>
+    &nbsp;
+    <div class="portlet light bordered">
+
+        <div class="portlet-body">
+            <div class="table-toolbar">
+                <a href="/Campaign/NewCampaign" class="btn btn-primary"><i class="fa fa-plus"></i> Nová kampaň</a>
+            </div>
+            &nbsp;
+            <table class="table table-striped table-bordered table-hover table-checkable order-column" id="campaigns">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>
+                            <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
+                                <input type="checkbox" class="group-checkable" data-set="#campaigns .checkboxes" />
+
+                            </label>
+                        </th>
+                        <th> Kampaň </th>
+                        <th> Rozpočet </th>
+                        <th> Stav </th>
+                        <th> Typ kampaně </th>
+                        <th> Zobrazení </th>
+                        <th> Prokliky </th>
+                        <th> CTR% </th>
+
+                    </tr>
+
+                </thead>
+                <tbody>
+                    @foreach (var aC in Model)
+                    {
+                        <tr class="odd gradeX">
+                            <td>
+                                <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
+                                    <input type="checkbox" class="checkboxes" value="1" />
+
+                                </label>
+                            </td>
+                            <td>@aC.name</td>
+                            <td>@aC.budget</td>
+                            @if (aC.status)
+                            {
+                                <td>Spuštěno</td>
+                            }
+                            else
+                            {
+                                <td>Zastaveno</td>
+                            }
+
+                            <td>@aC.type</td>
+                            <td>500</td>
+                            <td>200</td>
+                            <td>40</td>
+                        </tr>
+                    }
+                    
+                        <tr>
+                            <td></td>
+                            <td>Celkem</td>
+                            <td>2200</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>1000</td>
+                            <td>@clicks</td>
+                            <td>40</td>
+                        </tr>
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+
+</body>
+</html>
+
 
