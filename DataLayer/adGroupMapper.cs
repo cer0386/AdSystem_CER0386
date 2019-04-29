@@ -32,6 +32,54 @@ namespace DataLayer
             return adGroup;
         }
 
+        public int FindAdGroupMaxID()
+        {
+            string sql = ("Select MAX(adGroupID) from AdGroup");
+            int maxID = 0;
+            using (MySqlConnection connection = DBConnector.GetConnection())
+            {
+                connection.Open();
+                using (MySqlCommand cmd = new MySqlCommand(sql, connection))
+                {
+
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            maxID = reader.GetInt32(0);
+                        }
+                    }
+                }
+            }
+            return maxID;
+        }
+
+        public static int Insert(AdGroup adGroup)
+        {
+
+            using (MySqlConnection connection = DBConnector.GetConnection())
+            {
+                connection.Open();
+                StringBuilder sb = new StringBuilder();
+                sb.Clear();
+                sb.Append("INSERT INTO adGroup (adGroupName,adGroupStatus,adGroupBudget, maxCostPer, requiredViews, campaignID)");
+                sb.Append("VALUES (@adGroupName, @adGroupStatus, @adGroupBudget, @maxCostPer,@requiredViews,@campaignID);");
+                string sql = sb.ToString();
+                using (MySqlCommand command = new MySqlCommand(sql, connection))
+                {
+                    command.Parameters.AddWithValue("@adGroupName", adGroup.adGroupName);
+                    command.Parameters.AddWithValue("@adGroupStatus", adGroup.adGroupStatus);
+                    command.Parameters.AddWithValue("@adGroupBudget", adGroup.adGroupBudget);
+                    command.Parameters.AddWithValue("@maxCostPer", adGroup.maxCostPer);
+                    command.Parameters.AddWithValue("@requiredViews", adGroup.requiredViews);
+                    command.Parameters.AddWithValue("@campaignID", adGroup.adCampaign.campaignId);
+
+                    command.ExecuteNonQuery();
+                }
+            }
+            return 0;
+        }
+
         private static AdGroup MapAdGtoObject(MySqlDataReader reader)
         {
             AdGroup adGroup = new AdGroup();
@@ -44,8 +92,7 @@ namespace DataLayer
             if (!reader.IsDBNull(++i))
                 adGroup.maxCostPer = reader.GetInt32(i);
             adGroup.requiredViews = reader.GetInt32(++i);
-            adGroup.company = new Company();
-            adGroup.company.crn = reader.GetInt32(++i);
+
 
             return adGroup;
         }

@@ -9,6 +9,6 @@ namespace DomainLayer
         public int interestID { get; set; }
         public string interestName { get; set; }
         public string description { get; set; }
-
+        public List<Category> categories { get; set; }
     }
 }

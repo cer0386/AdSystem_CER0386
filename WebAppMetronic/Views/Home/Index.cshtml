@@ -19,17 +19,23 @@
 
 <body>
 
-
-
-
-
     <script src="~/metronic/code/highcharts.js"></script>
     <script src="~/metronic/code/modules/series-label.js"></script>
     <script src="~/metronic/code/modules/exporting.js"></script>
     <script src="~/metronic/code/modules/export-data.js"></script>
     <link href="~/metronic/vendors/general/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet" type="text/css" />
 
-    
+<div class="form-group row">
+
+        <div class="col-lg-4 col-md-9 col-sm-12">
+            <div class="input-group pull-right" id="kt_daterangepicker_6">
+                <input type="text" class="form-control" readonly="" placeholder="Vybrat datové rozmezí">
+                <div class="input-group-append">
+                    <span class="input-group-text"><i class="la la-calendar-check-o"></i></span>
+                </div>
+            </div>
+        </div>
+    </div>
     <div id="container"></div>
 
 
@@ -94,62 +100,65 @@
         });
     </script>
     &nbsp;
+    
     <div class="portlet light bordered">
 
         <div class="portlet-body">
+
             <div class="table-toolbar">
                 <a href="/Campaign/NewCampaign" class="btn btn-primary"><i class="fa fa-plus"></i> Nová kampaň</a>
             </div>
             &nbsp;
-            <table class="table table-striped table-bordered table-hover table-checkable order-column" id="campaigns">
-                <thead class="thead-dark">
-                    <tr>
-                        <th>
-                            <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
-                                <input type="checkbox" class="group-checkable" data-set="#campaigns .checkboxes" />
-
-                            </label>
-                        </th>
-                        <th> Kampaň </th>
-                        <th> Rozpočet </th>
-                        <th> Stav </th>
-                        <th> Typ kampaně </th>
-                        <th> Zobrazení </th>
-                        <th> Prokliky </th>
-                        <th> CTR% </th>
-
-                    </tr>
-
-                </thead>
-                <tbody>
-                    @foreach (var aC in Model)
-                    {
-                        <tr class="odd gradeX">
-                            <td>
+            <div class="table-scrollable">
+                <table class="table table-striped table-bordered table-hover table-checkable order-column" id="campaigns">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>
                                 <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
-                                    <input type="checkbox" class="checkboxes" value="1" />
+                                    <input type="checkbox" class="group-checkable" data-set="#campaigns .checkboxes" />
 
                                 </label>
-                            </td>
-                            <td>@aC.name</td>
-                            <td>@aC.budget</td>
-                            @if (aC.status)
-                            {
-                                <td>Spuštěno</td>
-                            }
-                            else
-                            {
-                                <td>Zastaveno</td>
-                            }
+                            </th>
+                            <th> Kampaň </th>
+                            <th> Rozpočet </th>
+                            <th> Stav </th>
+                            <th> Typ kampaně </th>
+                            <th> Zobrazení </th>
+                            <th> Prokliky </th>
+                            <th> CTR% </th>
 
-                            <td>@aC.type</td>
-                            <td>500</td>
-                            <td>200</td>
-                            <td>40</td>
                         </tr>
-                    }
-                    
-                        <tr>
+
+                    </thead>
+                    <tbody>
+                        @foreach (var aC in Model)
+                        {
+                            <tr class="active">
+                                <td>
+                                    <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
+                                        <input type="checkbox" class="checkboxes" value="1" />
+
+                                    </label>
+                                </td>
+                                <td>@aC.name</td>
+                                <td>@aC.budget</td>
+                                @if (aC.status)
+                                {
+                                    <td>Spuštěno</td>
+                                }
+                                else
+                                {
+                                    <td>Zastaveno</td>
+                                }
+
+                                <td>@aC.campaignType.type</td>
+                                <td>500</td>
+                                <td>200</td>
+                                <td>40</td>
+                            </tr>
+                        }
+
+                        <tr class="bg-secondary">
                             <td></td>
                             <td>Celkem</td>
                             <td>2200</td>
@@ -159,9 +168,10 @@
                             <td>@clicks</td>
                             <td>40</td>
                         </tr>
-                </tbody>
+                    </tbody>
 
-            </table>
+                </table>
+            </div>
         </div>
     </div>
 

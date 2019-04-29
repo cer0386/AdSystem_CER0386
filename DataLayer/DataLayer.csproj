@@ -50,10 +50,12 @@
     <Compile Include="AdViewMapper.cs" />
     <Compile Include="AssignedExcludedMapper.cs" />
     <Compile Include="AudienceMapper.cs" />
+    <Compile Include="CampaignTypeMapper.cs" />
     <Compile Include="CategoryMapper.cs" />
     <Compile Include="DBConnector.cs" />
     <Compile Include="AdImageMapper.cs" />
     <Compile Include="InAudienceMapper.cs" />
+    <Compile Include="InInterestMapper.cs" />
     <Compile Include="InterestMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CompanyMapper.cs" />

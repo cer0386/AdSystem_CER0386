@@ -14,14 +14,13 @@ namespace DomainLayer
         public string companyName { get; set; }
         public int nOfViews { get; set; }
         public AdGroup adGroup { get; set; }
-        public WebPage webPage { get; set; }
         public AdImage adImage { get; set; }
-
+        public int showCounter { get; set; }
 
 
         private void showAd()
         {
-
+            
         }
     }
 }

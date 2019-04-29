@@ -8,7 +8,7 @@ namespace DomainLayer
     {
         public int campaignId { get; set; }
         public string name { get; set; }
-        public string type { get; set; }
+        public CampaignType campaignType { get; set; }
         public bool status { get; set; }
         public double budget { get; set; }
         public double costPer { get; set; }

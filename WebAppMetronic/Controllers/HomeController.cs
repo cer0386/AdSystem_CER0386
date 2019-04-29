@@ -13,7 +13,9 @@ namespace WebAppMetronic.Controllers
         private List<AdCampaign> campaigns;
         private int nOfClicks { get; set; }
         AdCampaignMapper adCmapper = new AdCampaignMapper();
+        CampaignTypeMapper campaignTypeMapper = new CampaignTypeMapper();
         int companyID=12345677;
+
         // GET: Home
         public ActionResult Index()
         {
@@ -24,6 +26,10 @@ namespace WebAppMetronic.Controllers
         public HomeController()
         {
             campaigns = adCmapper.FindAdCampaigns(companyID);
+            foreach(AdCampaign c in campaigns)
+            {
+                c.campaignType = campaignTypeMapper.FindCampaignType(c.campaignType.campaignTypeID);
+            }
         }
 
     }

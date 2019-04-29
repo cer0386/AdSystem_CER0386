@@ -12,10 +12,9 @@ namespace DomainLayer
         public double adGroupBudget { get; set; }
         public double maxCostPer { get; set; }
         public int requiredViews { get; set; }
-        public Company company { get; set; }
+        public AdCampaign adCampaign { get; set; }
         public List<Ad> ads { get; set; }
-        public List<Audience> audienceAssigned { get; set; }
-        public List<Audience> audienceExcluded { get; set; }
+        public List<Audience> audiences { get; set; }
 
 
     }

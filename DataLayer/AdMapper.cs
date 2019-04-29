@@ -1,5 +1,6 @@
 ﻿using DomainLayer;
 using MySql.Data.MySqlClient;
+using System.Text;
 
 namespace DataLayer
 {
@@ -27,6 +28,34 @@ namespace DataLayer
             return ad;
         }
 
+        public static int Insert(Ad ad)
+        {
+
+            using (MySqlConnection connection = DBConnector.GetConnection())
+            {
+                connection.Open();
+                StringBuilder sb = new StringBuilder();
+                sb.Clear();
+                sb.Append("INSERT INTO adGroup (targetURL,title,longtitle, description, companyName, nOfViews, adGroupID, imageID)");
+                sb.Append("VALUES (@targetURL, @title, @longtitle, @description,@companyName,@nOfViews,@adGroupID,@imageID);");
+                string sql = sb.ToString();
+                using (MySqlCommand command = new MySqlCommand(sql, connection))
+                {
+                    command.Parameters.AddWithValue("@targetURL", ad.targetUrl);
+                    command.Parameters.AddWithValue("@title", ad.title);
+                    command.Parameters.AddWithValue("@longtitle", ad.longTitle);
+                    command.Parameters.AddWithValue("@description", ad.description);
+                    command.Parameters.AddWithValue("@companyName", ad.companyName);
+                    command.Parameters.AddWithValue("@nOfViews", ad.nOfViews);
+                    command.Parameters.AddWithValue("@adGroupID", ad.adGroup.adGroupId);
+                    command.Parameters.AddWithValue("@imageID", ad.adImage.imageId);
+
+                    command.ExecuteNonQuery();
+                }
+            }
+            return 0;
+        }
+
         private static Ad MapCtoObject(MySqlDataReader reader)
         {
             Ad ad = new Ad();
@@ -47,8 +76,6 @@ namespace DataLayer
                 ad.adImage = new AdImage();
                 ad.adImage.imageId = reader.GetInt32(i);
             }
-            ad.webPage = new WebPage();
-            ad.webPage.webPageID = reader.GetInt32(++i);
             return ad;
         }
     }

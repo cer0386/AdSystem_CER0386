@@ -88,12 +88,12 @@ var KTBootstrapDaterangepicker = function () {
             startDate: start,
             endDate: end,
             ranges: {
-               'Today': [moment(), moment()],
-               'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-               'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-               'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-               'This Month': [moment().startOf('month'), moment().endOf('month')],
-               'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+               'Dnes': [moment(), moment()],
+               'Vcera': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+               'Posledních 7 dní': [moment().subtract(6, 'days'), moment()],
+               'Poslední 30 dní': [moment().subtract(29, 'days'), moment()],
+               'Tento mesíc': [moment().startOf('month'), moment().endOf('month')],
+               'Minulý mesíc': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
             }
         }, function(start, end, label) {
             $('#kt_daterangepicker_6 .form-control').val( start.format('MM/DD/YYYY') + ' / ' + end.format('MM/DD/YYYY'));

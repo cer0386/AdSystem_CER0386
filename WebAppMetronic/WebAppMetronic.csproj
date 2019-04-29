@@ -123,6 +123,7 @@
     <Content Include="Views\Home\Campaigns.cshtml" />
     <Content Include="Views\Home\Audience.cshtml" />
     <Content Include="Views\Campaign\NewCampaign.cshtml" />
+    <Content Include="Views\Campaign\ccc.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

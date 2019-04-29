@@ -1,5 +1,6 @@
 ﻿using DomainLayer;
 using MySql.Data.MySqlClient;
+using System.Collections.Generic;
 
 namespace DataLayer
 {
@@ -25,6 +26,30 @@ namespace DataLayer
                 }
             }
             return category;
+        }
+
+        public List<Category> FindCategories(int interestID)
+        {
+            string sql = ("Select c.categoryID, c.categoryName from category c join ininterest i on i.categoryID =c.categoryID where i.interestID = @interestID");
+            List<Category> inInterests = new List<Category>();
+            using (MySqlConnection connection = DBConnector.GetConnection())
+            {
+                connection.Open();
+                using (MySqlCommand cmd = new MySqlCommand(sql, connection))
+                {
+                    cmd.Parameters.AddWithValue("@interestID", interestID);
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Category inInterest = new Category();
+                            inInterest = MapCatToObject(reader);
+                            inInterests.Add(inInterest);
+                        }
+                    }
+                }
+            }
+            return inInterests;
         }
 
         private static Category MapCatToObject(MySqlDataReader reader)
