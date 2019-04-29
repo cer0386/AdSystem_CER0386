@@ -81,11 +81,10 @@ namespace WebAppMetronic.Controllers
             ad.longTitle = collection[13];
             ad.description = collection[14];
             ad.companyName = collection[15];
+            AdMapper.Insert(ad);
             try
             {
                 
-
-
                 return RedirectToAction("Index", "Home");
             }
             catch

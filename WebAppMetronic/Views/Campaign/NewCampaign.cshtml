@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "Nová kampaň";
-    List<DomainLayer.CampaignType> types =  ViewBag.Types;
+    List<DomainLayer.CampaignType> types = ViewBag.Types;
 
 }
 <body>
@@ -11,178 +11,178 @@
     {
         @Html.AntiForgeryToken()
         <!--begin: Form Wizard Form-->
-    <form class="kt-form" id="kt_form" novalidate="novalidate">
+        <form class="kt-form" id="kt_form" novalidate="novalidate">
 
-        <!--begin: Form Wizard Step 1-->
-        <h3>Vytvořte novou kampaň</h3>
-        <hr />
+            <!--begin: Form Wizard Step 1-->
+            <h3>Vytvořte novou kampaň</h3>
+            <hr />
 
 
-        <div class="form-group">
+            <div class="form-group">
 
-            <label class="col-xl-3">Typ kampaně</label>
-            <div class="col-xl-2">
-                <select name="type" class="form-control" aria-describedby="campaignType">
-                    @{ 
-                        var i = 1;
+                <label class="col-xl-3">Typ kampaně</label>
+                <div class="col-xl-2">
+                    <select name="type" class="form-control" aria-describedby="campaignType">
+                        @{
+                            var i = 1;
 
-                        foreach (var type in @types)
-                        {
+                            foreach (var type in @types)
+                            {
 
-                            <option value="@i">@type.type</option>
-                            i = i + 1; 
+                                <option value="@i">@type.type</option>
+                                i = i + 1;
+                            }
+
                         }
 
-                    }
 
-
-                </select>
-            </div>
-        </div>
-
-        <div class="form-group ">
-
-            <label class="col-xl-2">Název reklamní kampaně</label>
-            <div class="col-xl-6">
-                @Html.EditorFor(model => model.adCampaign.name, new { htmlAttributes = new { @class = "form-control", @maxlength = "50", @required = true, @placeholder = "Název kampaně..." } })
-                @Html.ValidationMessageFor(model => model.adCampaign.name, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-
-            <label class="col-xl-2">Rozpočet kampaně</label>
-            <div class="col-xl-1">
-                @Html.EditorFor(model => model.adCampaign.budget, new { htmlAttributes = new { @class = "form-control", type = "number", placeholder = "200", maxlenght = 6, max = "200000", min = "200", required = true } })
-                @Html.ValidationMessageFor(model => model.adCampaign.budget, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-
-        <div class="form-group">
-            <label class="col-xl-2">Výchozí cena za zobrazení</label>
-            <div class="col-xl-1">
-                @Html.EditorFor(model => model.adCampaign.costPer, new { htmlAttributes = new { @class = "form-control", maxlenght=4, max = "1000", min = "20", placeholder = 20, type = "number", @required = true } })
-                @Html.ValidationMessageFor(model => model.adCampaign.costPer, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-
-            <label class="col-xl-2">Začátek kampaně</label>
-            <div class="col-xl-2">
-                <div class="input-group date">
-                    @Html.EditorFor(model => model.adCampaign.start, new { htmlAttributes = new { @class = "form-control", id = "kt_datepicker_3", @required = true } })
-                    @Html.ValidationMessageFor(model => model.adCampaign.start, "", new { @class = "text-danger" })
+                    </select>
                 </div>
             </div>
-        </div>
-        <div class="form-group">
 
-            <label class="col-xl-4">Konec kampaně</label>
-            <div class="col-xl-2">
-                <div class="input-group date">
-                    @Html.EditorFor(model => model.adCampaign.ending, new { htmlAttributes = new { @class = "form-control", id = "kt_datepicker_3" } })
-                    @Html.ValidationMessageFor(model => model.adCampaign.ending, "", new { @class = "text-danger" })
+            <div class="form-group ">
+
+                <label class="col-xl-2">Název reklamní kampaně</label>
+                <div class="col-xl-6">
+                    @Html.EditorFor(model => model.adCampaign.name, new { htmlAttributes = new { @class = "form-control", @maxlength = "50", @required = true, @placeholder = "Název kampaně..." } })
+                    @Html.ValidationMessageFor(model => model.adCampaign.name, "", new { @class = "text-danger" })
                 </div>
             </div>
-        </div>
 
+            <div class="form-group">
 
-
-        <!--end: Form Wizard Step 1-->
-        <!--begin: Form Wizard Step 2-->
-        <h3>Vytvořte novou reklamní sestavu</h3>
-        <hr />
-
-        <div class="form-group">
-            <label class="col-xl-2">Název reklamní sestavy</label>
-            <div class="col-xl-6">
-                @Html.EditorFor(model => model.adGroup.adGroupName, new { htmlAttributes = new { @class = "form-control", maxlength = 50, type = "text", @required = true } })
-                @Html.ValidationMessageFor(model => model.adGroup.adGroupName, "", new { @class = "text-danger" })
+                <label class="col-xl-2">Rozpočet kampaně</label>
+                <div class="col-xl-1">
+                    @Html.EditorFor(model => model.adCampaign.budget, new { htmlAttributes = new { @class = "form-control", type = "number", placeholder = "200", maxlenght = 6, max = "200000", min = "200", required = true } })
+                    @Html.ValidationMessageFor(model => model.adCampaign.budget, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
 
-        <div class="form-group">
-            <label class="col-xl-2">Rozpočet reklamní sestavy</label>
-            <div class="col-xl-1">
-                @Html.EditorFor(model => model.adGroup.adGroupBudget, new { htmlAttributes = new { @class = "form-control", maxlenght = 6, max = "200000", min = "100", placeholder = 100, type = "number" } })
-                @Html.ValidationMessageFor(model => model.adGroup.adGroupBudget, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <label class="col-xl-2">Výchozí cena za zobrazení</label>
+                <div class="col-xl-1">
+                    @Html.EditorFor(model => model.adCampaign.costPer, new { htmlAttributes = new { @class = "form-control", maxlenght = 4, max = "1000", min = "20", placeholder = 20, type = "number", @required = true } })
+                    @Html.ValidationMessageFor(model => model.adCampaign.costPer, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <label class="col-xl-2">Maximální cena za zobrazení</label>
-            <div class="col-xl-1">
-                @Html.EditorFor(model => model.adGroup.maxCostPer, new { htmlAttributes = new { @class = "form-control", maxlenght = 4, max = "1000", min = "10", placeholder = 10, type = "number" } })
-                @Html.ValidationMessageFor(model => model.adGroup.maxCostPer, "", new { @class = "text-danger" })
+            <div class="form-group">
+
+                <label class="col-xl-2">Začátek kampaně</label>
+                <div class="col-xl-2">
+                    <div class="input-group date">
+                        @Html.EditorFor(model => model.adCampaign.start, new { htmlAttributes = new { @class = "form-control", id = "kt_datepicker_3", @required = true } })
+                        @Html.ValidationMessageFor(model => model.adCampaign.start, "", new { @class = "text-danger" })
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label class="col-xl-2">Požadovaná zobrazení</label>
-            <div class="col-xl-1">
-                @Html.EditorFor(model => model.adGroup.requiredViews, new { htmlAttributes = new { @class = "form-control", maxlenght = 9, min = "10", placeholder = 10, type = "number" } })
-                @Html.ValidationMessageFor(model => model.adGroup.requiredViews, "", new { @class = "text-danger" })
+            <div class="form-group">
+
+                <label class="col-xl-4">Konec kampaně</label>
+                <div class="col-xl-2">
+                    <div class="input-group date">
+                        @Html.EditorFor(model => model.adCampaign.ending, new { htmlAttributes = new { @class = "form-control", id = "kt_datepicker_3" } })
+                        @Html.ValidationMessageFor(model => model.adCampaign.ending, "", new { @class = "text-danger" })
+                    </div>
+                </div>
             </div>
-        </div>
 
 
 
+            <!--end: Form Wizard Step 1-->
+            <!--begin: Form Wizard Step 2-->
+            <h3>Vytvořte novou reklamní sestavu</h3>
+            <hr />
 
-        <!--end: Form Wizard Step 2-->
-        <!--begin: Form Wizard Step 3-->
-        <h3>Přidejte novou reklamu</h3>
-        <hr />
-
-        <div class="form-group">
-            <label class="col-xl-2">Cílová URL</label>
-            <div class="col-xl-6">
-                @Html.EditorFor(model => model.ad.targetUrl, new { htmlAttributes = new { @class = "form-control", type = "url", @required = true } })
-                @Html.ValidationMessageFor(model => model.ad.targetUrl, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <label class="col-xl-2">Název reklamní sestavy</label>
+                <div class="col-xl-6">
+                    @Html.EditorFor(model => model.adGroup.adGroupName, new { htmlAttributes = new { @class = "form-control", maxlength = 50, type = "text", @required = true } })
+                    @Html.ValidationMessageFor(model => model.adGroup.adGroupName, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <label class="col-xl-2">Nadpis</label>
-            <div class="col-xl-3">
-                @Html.EditorFor(model => model.ad.title, new { htmlAttributes = new { @class = "form-control", maxlength = "30", @required = true } })
-                @Html.ValidationMessageFor(model => model.ad.title, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                <label class="col-xl-2">Rozpočet reklamní sestavy</label>
+                <div class="col-xl-1">
+                    @Html.EditorFor(model => model.adGroup.adGroupBudget, new { htmlAttributes = new { @class = "form-control", maxlenght = 6, max = "200000", min = "100", placeholder = 100, type = "number" } })
+                    @Html.ValidationMessageFor(model => model.adGroup.adGroupBudget, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <label class="col-xl-2">Dlouhý nadpis</label>
-            <div class="col-xl-6">
-                @Html.EditorFor(model => model.ad.longTitle, new { htmlAttributes = new { @class = "form-control", maxlength = "90", @required = true } })
-                @Html.ValidationMessageFor(model => model.ad.longTitle, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <label class="col-xl-2">Maximální cena za zobrazení</label>
+                <div class="col-xl-1">
+                    @Html.EditorFor(model => model.adGroup.maxCostPer, new { htmlAttributes = new { @class = "form-control", maxlenght = 4, max = "1000", min = "10", placeholder = 10, type = "number" } })
+                    @Html.ValidationMessageFor(model => model.adGroup.maxCostPer, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
-
-        <div class="form-group">
-            <label class="col-xl-2">Popisek</label>
-            <div class="col-xl-6">
-                @Html.EditorFor(model => model.ad.description, new { htmlAttributes = new { @class = "form-control", maxlength = "90", @required = true } })
-                @Html.ValidationMessageFor(model => model.ad.description, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <label class="col-xl-2">Požadovaná zobrazení</label>
+                <div class="col-xl-1">
+                    @Html.EditorFor(model => model.adGroup.requiredViews, new { htmlAttributes = new { @class = "form-control", maxlenght = 9, min = "10", placeholder = 10, type = "number" } })
+                    @Html.ValidationMessageFor(model => model.adGroup.requiredViews, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <label class="col-xl-2">Název firmy</label>
-            <div class="col-xl-3">
-                @Html.EditorFor(model => model.ad.companyName, new { htmlAttributes = new { @class = "form-control", maxlength = "30", @required = true } })
-                @Html.ValidationMessageFor(model => model.ad.companyName, "", new { @class = "text-danger" })
+
+
+
+            <!--end: Form Wizard Step 2-->
+            <!--begin: Form Wizard Step 3-->
+            <h3>Přidejte novou reklamu</h3>
+            <hr />
+
+            <div class="form-group">
+                <label class="col-xl-2">Cílová URL</label>
+                <div class="col-xl-6">
+                    @Html.EditorFor(model => model.ad.targetUrl, new { htmlAttributes = new { @class = "form-control", type = "url", @required = true } })
+                    @Html.ValidationMessageFor(model => model.ad.targetUrl, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+            <div class="form-group">
+                <label class="col-xl-2">Nadpis</label>
+                <div class="col-xl-3">
+                    @Html.EditorFor(model => model.ad.title, new { htmlAttributes = new { @class = "form-control", maxlength = "30", @required = true } })
+                    @Html.ValidationMessageFor(model => model.ad.title, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
-        <!--end: Form Wizard Step 3-->
 
-    </form>
+            <div class="form-group">
+                <label class="col-xl-2">Dlouhý nadpis</label>
+                <div class="col-xl-6">
+                    @Html.EditorFor(model => model.ad.longTitle, new { htmlAttributes = new { @class = "form-control", maxlength = "90", @required = true } })
+                    @Html.ValidationMessageFor(model => model.ad.longTitle, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-xl-2">Popisek</label>
+                <div class="col-xl-6">
+                    @Html.EditorFor(model => model.ad.description, new { htmlAttributes = new { @class = "form-control", maxlength = "90", @required = true } })
+                    @Html.ValidationMessageFor(model => model.ad.description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-xl-2">Název firmy</label>
+                <div class="col-xl-3">
+                    @Html.EditorFor(model => model.ad.companyName, new { htmlAttributes = new { @class = "form-control", maxlength = "30", @required = true } })
+                    @Html.ValidationMessageFor(model => model.ad.companyName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+            <!--end: Form Wizard Step 3-->
+
+        </form>
     }
     <!--end: Form Wizard Form-->
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>

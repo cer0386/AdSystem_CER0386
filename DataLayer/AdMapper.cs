@@ -36,7 +36,7 @@ namespace DataLayer
                 connection.Open();
                 StringBuilder sb = new StringBuilder();
                 sb.Clear();
-                sb.Append("INSERT INTO adGroup (targetURL,title,longtitle, description, companyName, nOfViews, adGroupID, imageID)");
+                sb.Append("INSERT INTO ad (targetURL,title,longtitle, description, companyName, nOfViews, adGroupID, imageID) ");
                 sb.Append("VALUES (@targetURL, @title, @longtitle, @description,@companyName,@nOfViews,@adGroupID,@imageID);");
                 string sql = sb.ToString();
                 using (MySqlCommand command = new MySqlCommand(sql, connection))
@@ -48,7 +48,10 @@ namespace DataLayer
                     command.Parameters.AddWithValue("@companyName", ad.companyName);
                     command.Parameters.AddWithValue("@nOfViews", ad.nOfViews);
                     command.Parameters.AddWithValue("@adGroupID", ad.adGroup.adGroupId);
+                    if(ad.adImage != null)
                     command.Parameters.AddWithValue("@imageID", ad.adImage.imageId);
+                    else
+                        command.Parameters.AddWithValue("@imageID", null);
 
                     command.ExecuteNonQuery();
                 }
