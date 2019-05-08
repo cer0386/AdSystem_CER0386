@@ -9,4 +9,35 @@
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\style\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\style\css\shop-homepage.css" />
+    <None Include="wwwroot\style\vendor\bootstrap\css\bootstrap.css" />
+    <None Include="wwwroot\style\vendor\bootstrap\css\bootstrap.css.map" />
+    <None Include="wwwroot\style\vendor\bootstrap\css\bootstrap.min.css" />
+    <None Include="wwwroot\style\vendor\bootstrap\css\bootstrap.min.css.map" />
+    <None Include="wwwroot\style\vendor\bootstrap\js\bootstrap.bundle.js" />
+    <None Include="wwwroot\style\vendor\bootstrap\js\bootstrap.bundle.js.map" />
+    <None Include="wwwroot\style\vendor\bootstrap\js\bootstrap.bundle.min.js" />
+    <None Include="wwwroot\style\vendor\bootstrap\js\bootstrap.bundle.min.js.map" />
+    <None Include="wwwroot\style\vendor\bootstrap\js\bootstrap.js" />
+    <None Include="wwwroot\style\vendor\bootstrap\js\bootstrap.js.map" />
+    <None Include="wwwroot\style\vendor\bootstrap\js\bootstrap.min.js" />
+    <None Include="wwwroot\style\vendor\bootstrap\js\bootstrap.min.js.map" />
+    <None Include="wwwroot\style\vendor\jquery\jquery.js" />
+    <None Include="wwwroot\style\vendor\jquery\jquery.min.js" />
+    <None Include="wwwroot\style\vendor\jquery\jquery.min.map" />
+    <None Include="wwwroot\style\vendor\jquery\jquery.slim.js" />
+    <None Include="wwwroot\style\vendor\jquery\jquery.slim.min.js" />
+    <None Include="wwwroot\style\vendor\jquery\jquery.slim.min.map" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DataLayer\DataLayer.csproj" />
+    <ProjectReference Include="..\DomainLayer\DomainLayer.csproj" />
+  </ItemGroup>
+
 </Project>

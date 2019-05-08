@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DataLayer;
+using DomainLayer;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -10,8 +12,11 @@ namespace WebShow.Controllers
 {
     public class HomeController : Controller
     {
+        List<Category> categories = new List<Category>();
+        CategoryMapper catmapper = new CategoryMapper();
         public IActionResult Index()
         {
+            categories = catmapper.FindCategories();
             return View();
         }
 

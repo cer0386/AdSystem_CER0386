@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Shop Homepage</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/style/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- Custom styles for this template -->
+    <link href="~/style/css/shop-homepage.css" rel="stylesheet" type="text/css" />
+    <link href="~/style/css/shop-item.css" rel="stylesheet" type="text/css" />
+
+</head>
+<body>
+
+    <partial name="_CookieConsentPartial" />
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; 2019 - Můj Eshop</p>
+        </footer>
+    </div>
+
+  
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

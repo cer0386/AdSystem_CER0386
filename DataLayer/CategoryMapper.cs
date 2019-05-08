@@ -52,6 +52,30 @@ namespace DataLayer
             return inInterests;
         }
 
+        public List<Category> FindCategories()
+        {
+            string sql = ("Select * from category");
+            List<Category> categories = new List<Category>();
+
+            using (MySqlConnection connection = DBConnector.GetConnection())
+            {
+                connection.Open();
+                using (MySqlCommand cmd = new MySqlCommand(sql, connection))
+                {
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Category category = new Category();
+                            category = MapCatToObject(reader);
+                            categories.Add(category);
+                        }
+                    }
+                }
+            }
+            return categories;
+        }
+
         private static Category MapCatToObject(MySqlDataReader reader)
         {
             Category category = new Category();
