@@ -1,5 +1,6 @@
 ﻿using DomainLayer;
 using MySql.Data.MySqlClient;
+using System.Collections.Generic;
 
 namespace DataLayer
 {
@@ -25,6 +26,30 @@ namespace DataLayer
                 }
             }
             return visitor;
+        }
+
+        public List<Visitor> FindVisitors(int aID)
+        {
+            string sql = ("Select v.* from Visitor v JOIN InAudience i on i.visitorID=v.visitorID where audienceID = @aID");
+            List<Visitor> visitors = new List<Visitor>();
+            using (MySqlConnection connection = DBConnector.GetConnection())
+            {
+                connection.Open();
+                using (MySqlCommand cmd = new MySqlCommand(sql, connection))
+                {
+                    cmd.Parameters.AddWithValue("@aID", aID);
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Visitor visitor = new Visitor();
+                            visitor = MapVtoObject(reader);
+                            visitors.Add(visitor);
+                        }
+                    }
+                }
+            }
+            return visitors;
         }
 
         private static Visitor MapVtoObject(MySqlDataReader reader)

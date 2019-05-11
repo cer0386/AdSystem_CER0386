@@ -59,20 +59,28 @@
                     }
 
                 </div>
-                <div class="ad" id="ad">
-                    Reklama
+                <p style="color:#808080;font-size:10px">Reklama</p>
+                <div class="col-xs-5" id="loadedAd">
+                    <a href="#" class="thumbnail">
+                        <h4 style="color:blue">@ViewBag.adTitle</h4>
+                        <p style="color:dimgrey;font-size:15px">@ViewBag.Description<br /></p>
+                        <p style="color:darkblue; font-size:18px">@ViewBag.Company</p>
+                    </a>
                 </div>
             </div>
+            
+
+
             @RenderSection("MiddleSection")
         </div>
-        
+           
 
-        
-        <hr />
-        <footer>
-            <p>&copy; 2019 - Můj Eshop</p>
-        </footer>
-    </div>
+
+            <hr />
+            <footer>
+                <p>&copy; 2019 - Můj Eshop</p>
+            </footer>
+        </div>
 
 
 

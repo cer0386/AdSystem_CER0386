@@ -33,15 +33,15 @@ namespace DataLayer
             int i = -1;
             audience.audienceID = reader.GetInt32(++i);
             audience.nameOfAudience = reader.GetString(++i);
-            if (reader.IsDBNull(++i))
+            if (!reader.IsDBNull(++i))
             {
                 audience.interest = new Interest();
                 audience.interest.interestID = reader.GetInt32(i);
             }
-            if (reader.IsDBNull(++i))
+            if (!reader.IsDBNull(++i))
             {
                 audience.category = new Category();
-                audience.interest.interestID = reader.GetInt32(i);
+                audience.category.categoryID = reader.GetInt32(i);
             }
             return audience;
         }

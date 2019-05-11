@@ -203,6 +203,10 @@
       <Project>{ee2e56bb-0c35-4324-9a31-7c499f4568ab}</Project>
       <Name>DomainLayer</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Images\Images.csproj">
+      <Project>{0c37cd31-82f0-4da0-9d14-a1753bc3b664}</Project>
+      <Name>Images</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -28,6 +28,28 @@ namespace DataLayer
             return category;
         }
 
+        public Category FindCategory(string catN)
+        {
+            string sql = ("Select * from Category where categoryName = @catN");
+            Category category = new Category();
+            using (MySqlConnection connection = DBConnector.GetConnection())
+            {
+                connection.Open();
+                using (MySqlCommand cmd = new MySqlCommand(sql, connection))
+                {
+                    cmd.Parameters.AddWithValue("@catN", catN);
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            category = MapCatToObject(reader);
+                        }
+                    }
+                }
+            }
+            return category;
+        }
+
         public List<Category> FindCategories(int interestID)
         {
             string sql = ("Select c.categoryID, c.categoryName from category c join ininterest i on i.categoryID =c.categoryID where i.interestID = @interestID");

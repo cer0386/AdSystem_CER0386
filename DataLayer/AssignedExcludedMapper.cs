@@ -1,5 +1,6 @@
 ﻿using DomainLayer;
 using MySql.Data.MySqlClient;
+using System.Collections.Generic;
 
 namespace DataLayer
 {
@@ -20,6 +21,30 @@ namespace DataLayer
                         while (reader.Read())
                         {
                             assignedExcluded = MapAEtoObject(reader);
+                        }
+                    }
+                }
+            }
+            return assignedExcluded;
+        }
+
+        public List<AssignedExcluded> FindAssignedExcludedAGID(int agID)
+        {
+            string sql = ("Select * from AssignedExcluded where adGroupID = @agID");
+            List<AssignedExcluded> assignedExcluded = new List<AssignedExcluded>();
+            using (MySqlConnection connection = DBConnector.GetConnection())
+            {
+                connection.Open();
+                using (MySqlCommand cmd = new MySqlCommand(sql, connection))
+                {
+                    cmd.Parameters.AddWithValue("@agID", agID);
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            AssignedExcluded ae = new AssignedExcluded();
+                            ae = MapAEtoObject(reader);
+                            assignedExcluded.Add(ae);
                         }
                     }
                 }

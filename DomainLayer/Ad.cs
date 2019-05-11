@@ -15,12 +15,11 @@ namespace DomainLayer
         public int nOfViews { get; set; }
         public AdGroup adGroup { get; set; }
         public AdImage adImage { get; set; }
+
+
+        public int priority { get; set; }
         public int showCounter { get; set; }
 
 
-        private void showAd()
-        {
-            
-        }
     }
 }

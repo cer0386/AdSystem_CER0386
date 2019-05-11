@@ -14,8 +14,10 @@ namespace DomainLayer
         public int requiredViews { get; set; }
         public AdCampaign adCampaign { get; set; }
         public List<Ad> ads { get; set; }
-        public List<Audience> audiences { get; set; }
+        public List<AssignedExcluded> assignedExcludeds { get; set; }
 
+        //není v systému, jen default hodnota
+        public int showLimit = 10;
 
     }
 }

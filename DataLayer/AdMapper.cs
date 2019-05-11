@@ -1,5 +1,6 @@
 ﻿using DomainLayer;
 using MySql.Data.MySqlClient;
+using System.Collections.Generic;
 using System.Text;
 
 namespace DataLayer
@@ -26,6 +27,30 @@ namespace DataLayer
                 }
             }
             return ad;
+        }
+
+        public List<Ad> FindAds(int aGID)
+        {
+            string sql = ("Select * from Ad where adGroupID = @aGID");
+            List<Ad> ads = new List<Ad>();
+            using (MySqlConnection connection = DBConnector.GetConnection())
+            {
+                connection.Open();
+                using (MySqlCommand cmd = new MySqlCommand(sql, connection))
+                {
+                    cmd.Parameters.AddWithValue("@aGID", aGID);
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Ad ad = new Ad();
+                            ad = MapCtoObject(reader);
+                            ads.Add(ad);
+                        }
+                    }
+                }
+            }
+            return ads;
         }
 
         public static int Insert(Ad ad)
@@ -65,7 +90,6 @@ namespace DataLayer
             int i = -1;
             ad.adId = reader.GetInt32(++i);
             ad.targetUrl = reader.GetString(++i);
-            ad.title = reader.GetString(++i);
             ad.title = reader.GetString(++i);
             ad.longTitle = reader.GetString(++i);
             ad.description = reader.GetString(++i);

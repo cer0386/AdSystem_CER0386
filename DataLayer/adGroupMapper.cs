@@ -32,6 +32,30 @@ namespace DataLayer
             return adGroup;
         }
 
+        public List<AdGroup> FindActiveAdGroups()
+        {
+            string sql = ("SELECT ag.* from adgroup ag JOIN adcampaign ac on ac.campaignID = ag.campaignID where (ending > @today OR ending IS NULL) AND STATUS = 1");
+            List<AdGroup> adGroups = new List<AdGroup>();
+            using (MySqlConnection connection = DBConnector.GetConnection())
+            {
+                connection.Open();
+                using (MySqlCommand cmd = new MySqlCommand(sql, connection))
+                {
+                    cmd.Parameters.AddWithValue("@today", DateTime.Today);
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            AdGroup adGroup = new AdGroup();
+                            adGroup = MapAdGtoObject(reader);
+                            adGroups.Add(adGroup);
+                        }
+                    }
+                }
+            }
+            return adGroups;
+        }
+
         public int FindAdGroupMaxID()
         {
             string sql = ("Select MAX(adGroupID) from AdGroup");
@@ -88,11 +112,12 @@ namespace DataLayer
             adGroup.adGroupName = reader.GetString(++i);
             adGroup.adGroupStatus = reader.GetBoolean(++i);
             if(!reader.IsDBNull(++i))
-                adGroup.adGroupBudget = reader.GetInt32(i);
+                adGroup.adGroupBudget = reader.GetDouble(i);
             if (!reader.IsDBNull(++i))
-                adGroup.maxCostPer = reader.GetInt32(i);
+                adGroup.maxCostPer = reader.GetDouble(i);
             adGroup.requiredViews = reader.GetInt32(++i);
-
+            adGroup.adCampaign = new AdCampaign();
+            adGroup.adCampaign.campaignId = reader.GetInt32(++i);
 
             return adGroup;
         }
