@@ -16,8 +16,10 @@ namespace DomainLayer
         public DateTime ? ending { get; set; } //? = nullable
         public Company company { get; set; }
         public List<AdGroup> adGroups { get; set; }
-        
 
-        
+        public int views { get; set; }
+        public int clicks { get; set; }
+        public double ctr { get; set; }
+
     }
 }

@@ -1,16 +1,20 @@
 ﻿@using DomainLayer;
-
 @{
-    ViewBag.Title = "Hlavní stránka";
-    ViewBag.Description = "Všechny kampaně";
+    ViewBag.Title = "Detail";
+    ViewBag.Description = "Popis";
     int year = DateTime.Now.Year;
     int month = DateTime.Now.Month;
-    int cDays = DateTime.DaysInMonth(year, month);
+    int maxY = 2019;
+    int maxM = 5;
+    int cDays = DateTime.DaysInMonth(maxY, maxM);
     string from = new DateTime(year, month, 1).ToString("dd-MMMM-yyyy");
     string to = new DateTime(year, month, cDays).ToString("dd-MMMM-yyyy");
-    List<AdCampaign> adCampaign = ViewBag.campaigns;
+    AdGroup adGroup = ViewBag.adGroup;
 }
-@using Highsoft.Web.Mvc.Charts
+@ViewBag.Title
+@ViewBag.Name
+
+
 
 
 <script src="~/metronic/code/highcharts.js"></script>
@@ -18,9 +22,6 @@
 <script src="~/metronic/code/modules/exporting.js"></script>
 <script src="~/metronic/code/modules/export-data.js"></script>
 <link href="~/metronic/vendors/general/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet" type="text/css" />
-
-<script src="http://code.highcharts.com/highcharts.js"></script>
-<script src="http://code.highcharts.com/modules/solid-gauge.js"></script>
 
 <div class="form-group row">
 
@@ -36,35 +37,7 @@
 </div>
 <div id="container"></div>
 
-@(Html.Highsoft().Highcharts(
-    new Highcharts
-    {
-        Title = new Title
-        {
 
-        },
-
-        Chart = new Highsoft.Web.Mvc.Charts.Chart
-        {
-            Type = ChartType.Line
-        },
-        Series = new List<Series>
-        {
-            new LineSeries
-            {
-            Name = "Prokliky",
-            Data = ViewData["clicks"] as List<LineSeriesData>
-            },
-            new LineSeries
-            {
-            Name = "Zobrazení",
-            Data = ViewData["views"] as List<LineSeriesData>
-            }
-        }
-    }
-    , "chart"
-    ))
-<!--
 <script type="text/javascript">
         Highcharts.chart('container', {
 
@@ -84,14 +57,14 @@
             },
             xAxis: {
                 type: 'datetime',
-                max: Date.UTC(@year, @month-1, @cDays),
-                min: Date.UTC(@year, @month-1, 1)
+                max: Date.UTC(@maxY, @maxM, @cDays),
+                min: Date.UTC(@maxY, @maxM, 1)
             },
 
             plotOptions: {
                 series: {
 
-                    pointStart: Date.UTC(@year, @month-1),
+                    pointStart: Date.UTC(@year, @month, 1),
                     pointInterval: 24 * 3600 * 1000 // one day
 
                 }
@@ -125,9 +98,6 @@
 
         });
 </script>
-    -->
-
-
 
 
     &nbsp;
@@ -137,7 +107,11 @@
     <div class="portlet-body">
 
         <div class="table-toolbar">
-            <a href="/Campaign/NewCampaign" class="btn btn-primary"><i class="fa fa-plus"></i> Nová kampaň</a>
+            <div class="row">
+                <a href="/Campaign/NewCampaign" class="btn btn-primary"><i class="fa fa-plus"></i> Nová Reklama</a> &nbsp;
+                <h3 style="margin-left:50px;margin-top:5px;color:black">@ViewBag.campaignN</h3>
+                <h4 style="margin-left:50px;margin-top:10px;color:black">@adGroup.adGroupName</h4>
+            </div>
         </div>
         &nbsp;
         <div class="table-scrollable">
@@ -150,11 +124,8 @@
 
                             </label>
                         </th>
-                        <th> Kampaň </th>
-                        <th> Rozpočet </th>
-                        <th> Stav </th>
-                        <th> Typ kampaně </th>
-                        <th> Cena za </th>
+                        <th> Reklama </th>
+                        <th> Požadovaná zobrazení </th>
                         <th> Zobrazení </th>
                         <th> Prokliky </th>
                         <th> CTR% </th>
@@ -163,7 +134,7 @@
 
                 </thead>
                 <tbody>
-                    @foreach (var aC in adCampaign)
+                    @foreach (var aC in adGroup.ads)
                     {
                         <tr class="active">
                             <td>
@@ -172,43 +143,26 @@
 
                                 </label>
                             </td>
-                            <td>@Html.ActionLink(aC.name, "DetailGroup", new { acID = aC.campaignId })</td>
-                            <td>@aC.budget</td>
-                            @if (aC.status)
-                            {
-                                <td>Spuštěno</td>
-                            }
-                            else
-                            {
-                                <td>Zastaveno</td>
-                            }
-
-                            <td>@aC.campaignType.type</td>
-                            <td>@aC.costPer</td>
+                            <td>@aC.title</td>
+                            
+                            <td>@adGroup.requiredViews</td>
                             <td>@aC.views</td>
                             <td>@aC.clicks</td>
                             <td>@aC.ctr</td>
                         </tr>
                     }
 
-                    <tr class="bg-secondary">
-                        <td></td>
-                        <td>Celkem</td>
-                        <td>@ViewBag.budgetA</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>@ViewBag.viewsA</td>
-                        <td>@ViewBag.clicksA</td>
-                        <td>@ViewBag.ctrA</td>
-                    </tr>
+                        <tr class="bg-secondary">
+                            <td></td>
+                            <td>Celkem</td>
+                            <td></td>
+                            <td>@ViewBag.viewsA</td>
+                            <td>@ViewBag.clicksA</td>
+                            <td>@ViewBag.ctrA</td>
+                        </tr>
                 </tbody>
 
             </table>
         </div>
     </div>
 </div>
-
-
-
-

@@ -19,5 +19,8 @@ namespace DomainLayer
         //není v systému, jen default hodnota
         public int showLimit = 10;
 
+        public int views { get; set; }
+        public int clicks { get; set; }
+        public double ctr { get; set; }
     }
 }

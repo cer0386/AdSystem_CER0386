@@ -58,14 +58,14 @@ INSERT INTO `webpage` (`webPageID`, `URL`, `product`, `categoryID`) VALUES
 (7, 'testurl6.cz', NULL, 5),
 (8, 'testurl7.cz', NULL, 2);
 
-INSERT INTO `ad` (`adID`, `targetURL`, `title`, `longTitle`, `description`, `companyName`, `nOfViews`, `adGroupID`, `imageID`) VALUES
-(1, 'testurl1.cz', 'Titulek1', 'Dlouhý Titulek1', 'A tady je popis1', 'Jewa', NULL, 1, NULL),
-(2, 'testurl5.cz', 'Titulek2', 'Dlouhý Titulek2', 'A tady je popis2', 'Jewa1', NULL, 2, NULL),
-(3, 'testurl5.cz', 'Titulek3', 'Dlouhý Titulek3', 'A tady je popis3', 'Jewa2', NULL, 2, NULL),
-(4, 'testurl7.cz', 'Titulek4', 'Dlouhý Titulek4', 'A tady je popis4', 'Avantgarde', NULL, 3, NULL),
-(5, 'testurl7.cz', 'Titulek5', 'Dlouhý Titulek5', 'A tady je popis5', 'Avantgarde1', NULL, 3, NULL),
-(6, 'testurl7.cz', 'Titulek6', 'Dlouhý Titulek6', 'A tady je popis6', 'Avantgarde2', NULL, 3, NULL),
-(7, 'testurl4.cz', 'Titulek6', 'Dlouhý Titulek6', 'A tady je popis6', 'Avantgarde2', NULL, 4, NULL);
+INSERT INTO `ad` (`adID`, `targetURL`, `title`, `longTitle`, `description`, `companyName`, `adGroupID`, `imageID`) VALUES
+(1, 'testurl1.cz', 'Titulek1', 'Dlouhý Titulek1', 'A tady je popis1', 'Jewa', 1, NULL),
+(2, 'testurl5.cz', 'Titulek2', 'Dlouhý Titulek2', 'A tady je popis2', 'Jewa1', 2, NULL),
+(3, 'testurl5.cz', 'Titulek3', 'Dlouhý Titulek3', 'A tady je popis3', 'Jewa2', 2, NULL),
+(4, 'testurl7.cz', 'Titulek4', 'Dlouhý Titulek4', 'A tady je popis4', 'Avantgarde', 3, NULL),
+(5, 'testurl7.cz', 'Titulek5', 'Dlouhý Titulek5', 'A tady je popis5', 'Avantgarde1', 3, NULL),
+(6, 'testurl7.cz', 'Titulek6', 'Dlouhý Titulek6', 'A tady je popis6', 'Avantgarde2', 3, NULL),
+(7, 'testurl4.cz', 'Titulek6', 'Dlouhý Titulek6', 'A tady je popis6', 'Avantgarde2', 4, NULL);
 
 
 INSERT INTO `visitor` (`visitorID`, `name`, `location`) VALUES
@@ -135,24 +135,32 @@ Insert INTO `assignedexcluded` (`aeIDOF`, `audienceID`, `adGroupID`, `action`) V
 (28, 7, 4, 1);
 
 Insert INTO `AdView` (`viewIDOF`, `adID`, `visitorID`, `viewed`) VALUES
-(1, 1, 1, '2019-05-29 00:00:00'),
-(2, 1, 1, '2019-05-29 00:00:00'),
-(3, 1, 2, '2019-05-29 00:00:00'),
-(4, 1, 3, '2019-05-29 00:00:00'),
-(5, 2, 4, '2019-05-29 00:00:00'),
+(1, 1, 1, '2019-05-30 00:00:00'),
+(2, 1, 1, '2019-05-19 00:00:00'),
+(3, 1, 2, '2019-05-19 00:00:00'),
+(4, 1, 3, '2019-05-2 00:00:00'),
+(5, 2, 4, '2019-05-19 00:00:00'),
 (6, 2, 5, '2019-05-29 00:00:00'),
-(7, 3, 6, '2019-05-29 00:00:00'),
-(8, 3, 7, '2019-05-29 00:00:00'),
-(9, 4, 8, '2019-05-29 00:00:00'),
-(10, 4, 8, '2019-05-29 00:00:00'),
-(11, 5, 10, '2019-05-29 00:00:00'),
-(12, 5, 10, '2019-05-29 00:00:00'),
-(13, 5, 8, '2019-05-29 00:00:00'),
-(14, 5, 1, '2019-05-29 00:00:00'),
-(15, 5, 4, '2019-05-29 00:00:00'),
-(16, 7, 4, '2019-05-29 00:00:00');
+(7, 3, 6, '2019-05-12 00:00:00'),
+(8, 3, 7, '2019-05-18 00:00:00'),
+(9, 4, 8, '2019-05-18 00:00:00'),
+(10, 4, 8, '2019-05-5 00:00:00'),
+(11, 5, 10, '2019-05-10 00:00:00'),
+(12, 5, 10, '2019-05-2 00:00:00'),
+(13, 5, 8, '2019-05-1 00:00:00'),
+(14, 5, 1, '2019-05-26 00:00:00'),
+(15, 5, 4, '2019-05-21 00:00:00'),
+(16, 7, 4, '2019-05-30 00:00:00');
 
-
+Insert INTO `AdClick` (`clickIDOF`, `adID`, `visitorID`, `clicked`) VALUES
+(1, 1, 1, '2019-05-30 00:00:00'),
+(2, 1, 1, '2019-05-19 00:00:00'),
+(3, 2, 2, '2019-05-19 00:00:00'),
+(4, 3, 3, '2019-05-12 00:00:00'),
+(5, 4, 4, '2019-05-18 00:00:00'),
+(6, 2, 5, '2019-05-19 00:00:00'),
+(7, 5, 6, '2019-05-10 00:00:00'),
+(8, 5, 7, '2019-05-2 00:00:00');
 
 Insert INTO `AdClick` (`clickIDOF`, `adID`, `visitorID`, `clicked`) VALUES
 

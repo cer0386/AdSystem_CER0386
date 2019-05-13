@@ -1,6 +1,7 @@
 ﻿using DataLayer;
 
 using DomainLayer;
+using DomainLayer.HelpClasses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,7 @@ namespace ConsoleTest
         }
         static void Main(string[] args)
         {
+            /*
             AudienceMapper audienceMapper = new AudienceMapper();
             InterestMapper interestMapper = new InterestMapper();
             CategoryMapper categoryMapper = new CategoryMapper();
@@ -147,17 +149,25 @@ namespace ConsoleTest
 
 
             //vypis
-            /*foreach(Ad ad in ads)
-            {
-                Console.WriteLine(ad.adId +" AGID  costPerADC" + ad.adGroup.adCampaign.costPer + " budget " + ad.adGroup.adCampaign.budget);
-                if(ad.adGroup.adGroupBudget !=0)
-                    Console.WriteLine("JETAM AG budget "+ ad.adGroup.adGroupBudget );
-                if (ad.adGroup.maxCostPer != 0)
-                    Console.WriteLine("JETAM AG maxCost "+ad.adGroup.maxCostPer );
-            }*/
+            
 
             Console.WriteLine("Priorita " +adToShow.priority + " ID " + adToShow.adId + " Titulek " + adToShow.title);
-
+            */
+            List<GraphDataViews> g = new List<GraphDataViews>();
+            g = new AdCampaignMapper().FindViewsG(1, new DateTime(2019, 5, 2), new DateTime(2019, 5, 19));
+            List<GraphDataClicks> c = new List<GraphDataClicks>();
+            c = new AdCampaignMapper().FindClicksG(1, new DateTime(2019, 5, 2), new DateTime(2019, 5, 19));
+            foreach (GraphDataViews ga in g)
+            {
+                Console.WriteLine(ga.date + " " + ga.views);
+            }
+            foreach (GraphDataClicks ga in c)
+            {
+                Console.WriteLine(ga.date + " " + ga.clicks);
+            }
+            double temp = (3695.0 / 35222.0) * 100;
+            double t = Math.Round(temp, 2);
+            Console.WriteLine(t);
             Console.ReadLine();
         }
         

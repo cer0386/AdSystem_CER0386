@@ -169,7 +169,7 @@ namespace WebShop.Controllers
             //jestli nebyla už zobrazena 2x za sebou
             //Seřadit reklamy podle cenové nabídky --
             //přiřadit náhodné číslo, z počtu reklam k ceně nabídky a seřadit je potom a vybrat tu nejrelevantnější --
-            //aby se zobrazily všechny reklamy a ne pořád ty stejné dokola nebo to prostě hodit random 
+            //aby se zobrazily všechny reklamy a ne pořád ty stejné dokola nebo to prostě hodit random --
 
             List<Ad> ads = new List<Ad>();
 

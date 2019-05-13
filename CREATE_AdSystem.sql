@@ -35,7 +35,6 @@ CREATE TABLE `ad` (
   `longTitle` varchar(90) NOT NULL,
   `description` varchar(90) NOT NULL,
   `companyName` varchar(30) NOT NULL,
-  `nOfViews` int(11) DEFAULT NULL,
   `adGroupID` int(11) NOT NULL,
   `webPageID` int(11) NOT NULL,
   `imageID` int(11) DEFAULT NULL

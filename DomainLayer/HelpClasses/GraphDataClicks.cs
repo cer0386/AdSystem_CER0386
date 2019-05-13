@@ -4,8 +4,9 @@ using System.Text;
 
 namespace DomainLayer.HelpClasses
 {
-    public class AudienceAction : Audience
+    public class GraphDataClicks
     {
-        public bool action { get; set; }
+        public DateTime date { get; set; }
+        public int clicks { get; set; }
     }
 }

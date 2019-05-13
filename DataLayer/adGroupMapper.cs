@@ -5,21 +5,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
+using DomainLayer.HelpClasses;
 
 namespace DataLayer
 {
     public class AdGroupMapper
     {
-        public AdGroup FindAdGroup(int adID)
+        public AdGroup FindAdGroup(int agID)
         {
-            string sql = ("Select * from AdGroup where adID = @adID");
+            string sql = ("Select * from AdGroup where adGroupID = @agID");
             AdGroup adGroup = new AdGroup();
             using (MySqlConnection connection = DBConnector.GetConnection())
             {
                 connection.Open();
                 using (MySqlCommand cmd = new MySqlCommand(sql, connection))
                 {
-                    cmd.Parameters.AddWithValue("@adID", adID);
+                    cmd.Parameters.AddWithValue("@agID", agID);
                     using (MySqlDataReader reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
@@ -30,6 +31,127 @@ namespace DataLayer
                 }
             }
             return adGroup;
+        }
+
+        public int FindNoViews(int agID)
+        {
+            string sql = ("SELECT count(av.viewIDOF) FROM adgroup ag join Ad ad on ag.adGroupID = ad.adGroupID JOIN adview av on av.adID = ad.adID WHERE ag.adGroupID = @agID");
+            int views = 0;
+            using (MySqlConnection connection = DBConnector.GetConnection())
+            {
+                connection.Open();
+                using (MySqlCommand cmd = new MySqlCommand(sql, connection))
+                {
+                    cmd.Parameters.AddWithValue("@agID", agID);
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            views = reader.GetInt32(0);
+                        }
+                    }
+                }
+            }
+            return views;
+        }
+        public int FindNoClicks(int agID)
+        {
+            string sql = ("SELECT count(av.clickIDOF) FROM adgroup ag join Ad ad on ag.adGroupID = ad.adGroupID JOIN adClick av on av.adID = ad.adID WHERE ag.adGroupID = @agID");
+            int clicks = 0;
+            using (MySqlConnection connection = DBConnector.GetConnection())
+            {
+                connection.Open();
+                using (MySqlCommand cmd = new MySqlCommand(sql, connection))
+                {
+                    cmd.Parameters.AddWithValue("@agID", agID);
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            clicks = reader.GetInt32(0);
+                        }
+                    }
+                }
+            }
+            return clicks;
+        }
+
+        public List<GraphDataViews> FindViewsG(int agID, DateTime from, DateTime to)
+        {
+            string sql = ("SELECT av.viewed, count(av.viewIDOF) FROM adgroup ag join ad on ag.adGroupID=ad.adID join adview av "+
+                "on ad.adID = av.adID where ag.adGroupID = @agID AND av.viewed >= @from AND av.viewed <= @to group by av.viewed");
+            GraphDataViews dataView = new GraphDataViews();
+            List<GraphDataViews> dataViews = new List<GraphDataViews>();
+            using (MySqlConnection connection = DBConnector.GetConnection())
+            {
+                connection.Open();
+                using (MySqlCommand cmd = new MySqlCommand(sql, connection))
+                {
+                    cmd.Parameters.AddWithValue("@agID", agID);
+                    cmd.Parameters.AddWithValue("@from", from);
+                    cmd.Parameters.AddWithValue("@to", to);
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            dataView = MapToGDV(reader);
+                            dataViews.Add(dataView);
+                        }
+                    }
+                }
+            }
+            return dataViews;
+        }
+
+        public List<GraphDataClicks> FindClicksG(int agID, DateTime from, DateTime to)
+        {
+            string sql = ("SELECT av.clicked, count(av.clickIDOF) FROM adgroup ag join ad on ag.adGroupID=ad.adID join adclick av "+
+                "on ad.adID = av.adID where ag.adGroupID = @agID AND av.clicked >= @from AND av.clicked <= @to group by av.clicked");
+            GraphDataClicks dataClick = new GraphDataClicks();
+            List<GraphDataClicks> dataClicks = new List<GraphDataClicks>();
+            using (MySqlConnection connection = DBConnector.GetConnection())
+            {
+                connection.Open();
+                using (MySqlCommand cmd = new MySqlCommand(sql, connection))
+                {
+                    cmd.Parameters.AddWithValue("@agID", agID);
+                    cmd.Parameters.AddWithValue("@from", from);
+                    cmd.Parameters.AddWithValue("@to", to);
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            dataClick = MapToGDC(reader);
+                            dataClicks.Add(dataClick);
+                        }
+                    }
+                }
+            }
+            return dataClicks;
+        }
+
+        public List<AdGroup> FindAdGroups(int cID)
+        {
+            string sql = ("SELECT * from adgroup Where campaignID = @cID");
+            List<AdGroup> adGroups = new List<AdGroup>();
+            using (MySqlConnection connection = DBConnector.GetConnection())
+            {
+                connection.Open();
+                using (MySqlCommand cmd = new MySqlCommand(sql, connection))
+                {
+                    cmd.Parameters.AddWithValue("@cID", cID);
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            AdGroup adGroup = new AdGroup();
+                            adGroup = MapAdGtoObject(reader);
+                            adGroups.Add(adGroup);
+                        }
+                    }
+                }
+            }
+            return adGroups;
         }
 
         public List<AdGroup> FindActiveAdGroups()
@@ -102,6 +224,26 @@ namespace DataLayer
                 }
             }
             return 0;
+        }
+
+        private static GraphDataViews MapToGDV(MySqlDataReader reader)
+        {
+            GraphDataViews dataViews = new GraphDataViews();
+            int i = -1;
+            dataViews.date = reader.GetDateTime(++i);
+            dataViews.views = reader.GetInt32(++i);
+
+            return dataViews;
+        }
+
+        private static GraphDataClicks MapToGDC(MySqlDataReader reader)
+        {
+            GraphDataClicks dataViews = new GraphDataClicks();
+            int i = -1;
+            dataViews.date = reader.GetDateTime(++i);
+            dataViews.clicks = reader.GetInt32(++i);
+
+            return dataViews;
         }
 
         private static AdGroup MapAdGtoObject(MySqlDataReader reader)
